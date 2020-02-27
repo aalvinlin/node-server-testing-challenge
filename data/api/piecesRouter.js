@@ -34,11 +34,15 @@ router.get("/connectors/:color", (req, res) => {
     const color = req.params.color;
 
     database.getConnectorByColor(color)
-        .then(connectors =>
-            res.status(200).json(connectors)
-        )
+        .then(connectors => {
+
+            if (connectors)
+                { res.status(200).json(connectors)}
+            else
+                { res.status(400).json({message: "Could not retrieve data for a " + color + " connector.", error})}
+        })
         .catch(error =>
-            res.status(500).json({message: "Could not retrieve data for a " + color + " connector.", error})
+            res.status(500).json({message: "Could not retrieve connector."})
         )
 });
 
@@ -48,11 +52,15 @@ router.get("/rods/:color", (req, res) => {
     const color = req.params.color;
 
     database.getRodByColor(color)
-        .then(connectors =>
-            res.status(200).json(connectors)
-        )
+        .then(rods => {
+
+            if (rods)
+                { res.status(200).json(rods)}
+            else
+                { res.status(400).json({message: "Could not retrieve data for a " + color + " rod.", error})}
+        })
         .catch(error =>
-            res.status(500).json({message: "Could not retrieve data for a " + color + " rod.", error})
+            res.status(500).json({message: "Could not retrieve rod."})
         )
 });
 
