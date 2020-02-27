@@ -56,6 +56,49 @@ router.get("/rods/:color", (req, res) => {
         )
 });
 
+// POST new connector to database
+router.post("/connectors", (req, res) => {
+
+    let connectorInfo = req.body;
+
+    if (!connectorInfo || !connectorInfo.color || !connectorInfo.angle || !connectorInfo.hasHole || !connectorInfo.connections)
+        {
+            res.status(400).json({message: "Must include color, angle, hasHole, and connections properties."})
+        }
+    else
+        {
+            database.addRod(connectorInfo)
+                .then(connectors =>
+                    res.status(201).json(connectors)
+                )
+                .catch(error =>
+                    res.status(500).json({message: "Could not add connector.", error})
+                )
+        }
+});
+
+// POST new rod to database
+router.post("/rods", (req, res) => {
+
+    let rodInfo = req.body;
+
+    if (!rodInfo || !rodInfo.color)
+        {
+            res.status(400).json({message: "Must include color property."})
+        }
+    else
+        {
+            database.addRod(rodInfo)
+                .then(rods =>
+                    res.status(201).json(rods)
+                )
+                .catch(error =>
+                    res.status(500).json({message: "Could not add rod.", error})
+                )
+        }
+});
+
+
 // DELETE connector by color
 router.delete("/connectors/:color", (req, res) => {
 
