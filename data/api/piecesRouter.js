@@ -4,9 +4,9 @@ const database = require("./piecesModel");
 
 const router = express.Router();
 
-router.get("connectors", (req, res) => {
+router.get("/connectors", (req, res) => {
 
-    database.getConnectors()
+    database.getAllConnectors()
         .then(connectors =>
             res.status(200).json(connectors)
         )
@@ -15,9 +15,9 @@ router.get("connectors", (req, res) => {
         )
 });
 
-router.get("rods", (req, res) => {
+router.get("/rods", (req, res) => {
 
-    database.getRods()
+    database.getAllRods()
         .then(rods =>
             res.status(200).json(rods)
         )
