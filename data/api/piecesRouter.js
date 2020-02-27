@@ -55,4 +55,35 @@ router.get("/rods/:color", (req, res) => {
             res.status(500).json({message: "Could not retrieve data for a " + color + " rod.", error})
         )
 });
+
+// DELETE connector by color
+router.delete("/connectors/:color", (req, res) => {
+
+    const color = req.params.color;
+
+    database.deleteConnectorByColor(color)
+        .then(connectors =>
+            res.status(200).json({message: "Data for the " + color + " connector was deleted."})
+        )
+        .catch(error =>
+            res.status(500).json({message: "Could not retrieve data for a " + color + " connector.", error})
+        )
+});
+
+// DELETE rod by color
+router.delete("/rods/:color", (req, res) => {
+
+    const color = req.params.color;
+
+    database.deleteRodByColor(color)
+        .then(connectors =>
+            res.status(200).json({message: "Data for the " + color + " rod was deleted."})
+        )
+        .catch(error =>
+            res.status(500).json({message: "Could not retrieve data for a " + color + " rod.", error})
+        )
+});
+
+
+
 module.exports = router;
