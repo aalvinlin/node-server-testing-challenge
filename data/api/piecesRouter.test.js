@@ -90,3 +90,72 @@ describe("GET /api/connectors/black", function () {
             })
     })
 });
+
+
+// testing GET /api/rods/:color
+describe("GET /api/rods/green", function () {
+    test("should return a 200 status code", function () {
+        return request(server)
+            .get("/api/rods/green")
+            .then(response => {
+                expect(response.status).toBe(200);
+            })
+    })
+});
+
+describe("GET /api/rods/black", function () {
+    test("should return a 500 status code", function () {
+        return request(server)
+            .get("/api/rods/black")
+            .then(response => {
+                expect(response.status).toBe(500);
+            })
+    })
+});
+
+
+// testing POST /api/connectors
+describe("POST /api/connectors", function () {
+    test("should return a 201 status code", function () {
+        return request(server)
+            .post("/api/connectors/white")
+            .send({ color: "white", angle: 360, hasHole: 1, connections: 8})
+            .then(response => {
+                expect(response.status).toBe(201);
+            })
+    })
+});
+
+describe("POST /api/connectors", function () {
+    test("should return a 400 status code", function () {
+        return request(server)
+            .post("/api/connectors/purple")
+            .send({ color: "purple"})
+            .then(response => {
+                expect(response.status).toBe(400);
+            })
+    })
+});
+
+// testing POST /api/rods
+describe("POST /api/rods", function () {
+    test("should return a 201 status code", function () {
+        return request(server)
+            .post("/api/rods/red")
+            .send({ color: "red"})
+            .then(response => {
+                expect(response.status).toBe(201);
+            })
+    })
+});
+
+describe("POST /api/rods", function () {
+    test("should return a 400 status code", function () {
+        return request(server)
+            .post("/api/rods/purple")
+            .send({ nothing: "missing color"})
+            .then(response => {
+                expect(response.status).toBe(400);
+            })
+    })
+});
