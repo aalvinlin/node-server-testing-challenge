@@ -23,23 +23,16 @@ For this project you will use `Test Driven Development` to create a RESTful API 
 - Your API must be able to **create** and **delete** a _resource_ of your choosing.
 - Write a minimum of two tests per route handler.
 
-# Endpoints
+# **Endpoints for connectors**
 
-## GET /api/connectors
+## **GET** /api/connectors
 
 |Status|Type|Description|Message|Return Value|
 |------|----|-----------|-------|------------|
 |200|Success|Get a list of all connectors|none|array|
 |500|Error|Server error|"Could not retrieve connectors."|none|
 
-## GET /api/rods
-
-|Status|Type|Description|Message|Return Value|
-|------|----|-----------|-------|------------|
-|200|Success|Get a list of all rods|none|array|
-|500|Error|Server error|"Could not retrieve rods."|none|
-
-## GET /api/connectors/:color
+## **GET** /api/connectors/:color
 
 |Status|Type|Description|Message|Return Value|
 |------|----|-----------|-------|------------|
@@ -47,15 +40,7 @@ For this project you will use `Test Driven Development` to create a RESTful API 
 |400|Error|Info not found|Could not retrieve data for a (color) connector.|none|
 |500|Error|Server error|Could not retrieve connector.|none|
 
-## GET /api/rods/:color
-
-|Status|Type|Description|Message|Return Value|
-|------|----|-----------|-------|------------|
-|200|Success|Get the rod with specified color|none|object|
-|400|Error|Info not found|Could not retrieve data for a (color) rod.|none|
-|500|Error|Server error|Could not retrieve rod.|none|
-
-## POST /api/connectors
+## **POST** /api/connectors
 
 |Status|Type|Description|Message|Return Value|
 |------|----|-----------|-------|------------|
@@ -63,7 +48,31 @@ For this project you will use `Test Driven Development` to create a RESTful API 
 |400|Error|Required info missing|Must include color, angle, hasHole, and connections properties.|none|
 |500|Error|Server error|Could not add connector.|none|
 
-## POST /api/rods
+## **DELETE** /api/connectors/:color
+
+|Status|Type|Description|Message|Return Value|
+|------|----|-----------|-------|------------|
+|200|Success|The connector with specified color was deleted.|Data for the (color) connector was deleted.|object|
+|500|Error|Server error|Could not retrieve data for a (color) connector.|none|
+
+# **Endpoints for rods**
+
+## **GET** /api/rods
+
+|Status|Type|Description|Message|Return Value|
+|------|----|-----------|-------|------------|
+|200|Success|Get a list of all rods|none|array|
+|500|Error|Server error|"Could not retrieve rods."|none|
+
+## **GET** /api/rods/:color
+
+|Status|Type|Description|Message|Return Value|
+|------|----|-----------|-------|------------|
+|200|Success|Get the rod with specified color|none|object|
+|400|Error|Info not found|Could not retrieve data for a (color) rod.|none|
+|500|Error|Server error|Could not retrieve rod.|none|
+
+## **POST** /api/rods
 
 |Status|Type|Description|Message|Return Value|
 |------|----|-----------|-------|------------|
@@ -71,14 +80,7 @@ For this project you will use `Test Driven Development` to create a RESTful API 
 |400|Error|Required info missing|Must include color property.|none|
 |500|Error|Server error|Could not add rod.|none|
 
-## DELETE /api/connectors/:color
-
-|Status|Type|Description|Message|Return Value|
-|------|----|-----------|-------|------------|
-|200|Success|The connector with specified color was deleted.|Data for the (color) connector was deleted.|object|
-|500|Error|Server error|Could not retrieve data for a (color) connector.|none|
-
-## DELETE /api/rods/:color
+## **DELETE** /api/rods/:color
 
 |Status|Type|Description|Message|Return Value|
 |------|----|-----------|-------|------------|
