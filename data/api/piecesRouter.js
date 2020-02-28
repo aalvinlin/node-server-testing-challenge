@@ -69,13 +69,20 @@ router.post("/connectors", (req, res) => {
 
     let connectorInfo = req.body;
 
+    // console.log('attempting to post', req.body);
+
+    // if (!req.body)
+    //     { res.status(500).json({message: "No req.body found."}) }
+    // else
+    //     { res.status(200).json({message: "OK."}) }
+
     if (!connectorInfo || !connectorInfo.color || !connectorInfo.angle || !connectorInfo.hasHole || !connectorInfo.connections)
         {
             res.status(400).json({message: "Must include color, angle, hasHole, and connections properties."})
         }
     else
         {
-            database.addRod(connectorInfo)
+            database.addConnector(connectorInfo)
                 .then(connectors =>
                     res.status(201).json(connectors)
                 )
@@ -89,6 +96,8 @@ router.post("/connectors", (req, res) => {
 router.post("/rods", (req, res) => {
 
     let rodInfo = req.body;
+
+    console.log("trying to add rod:", rodInfo)
 
     if (!rodInfo || !rodInfo.color)
         {

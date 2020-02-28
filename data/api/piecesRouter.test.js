@@ -5,10 +5,10 @@ const server = require("../../server.js")
 const database = require("../db-config");
 
 // clear table before each test case
-beforeEach(async () => {
-    await database("connectors").truncate();
-    await database("rods").truncate();
-})
+// beforeEach(async () => {
+//     await database("connectors").truncate();
+//     await database("rods").truncate();
+// })
 
 describe("Pieces router", () => {
     test("tests run", function() {
@@ -93,10 +93,10 @@ describe("GET /api/connectors/black", function () {
 
 
 // testing GET /api/rods/:color
-describe("GET /api/rods/green", function () {
+describe("GET /api/rods/red", function () {
     test("should return a 200 status code", function () {
         return request(server)
-            .get("/api/rods/green")
+            .get("/api/rods/red")
             .then(response => {
                 expect(response.status).toBe(200);
             })
@@ -118,7 +118,7 @@ describe("GET /api/rods/black", function () {
 describe("POST /api/connectors", function () {
     test("should return a 201 status code", function () {
         return request(server)
-            .post("/api/connectors/white")
+            .post("/api/connectors")
             .send({ color: "white", angle: 360, hasHole: 1, connections: 8})
             .then(response => {
                 expect(response.status).toBe(201);
@@ -129,7 +129,7 @@ describe("POST /api/connectors", function () {
 describe("POST /api/connectors", function () {
     test("should return a 400 status code", function () {
         return request(server)
-            .post("/api/connectors/purple")
+            .post("/api/connectors")
             .send({ color: "purple"})
             .then(response => {
                 expect(response.status).toBe(400);
@@ -141,8 +141,8 @@ describe("POST /api/connectors", function () {
 describe("POST /api/rods", function () {
     test("should return a 201 status code", function () {
         return request(server)
-            .post("/api/rods/red")
-            .send({ color: "red"})
+            .post("/api/rods")
+            .send({ color: "clear"})
             .then(response => {
                 expect(response.status).toBe(201);
             })
@@ -152,10 +152,13 @@ describe("POST /api/rods", function () {
 describe("POST /api/rods", function () {
     test("should return a 400 status code", function () {
         return request(server)
-            .post("/api/rods/purple")
+            .post("/api/rods")
             .send({ nothing: "missing color"})
             .then(response => {
                 expect(response.status).toBe(400);
             })
     })
 });
+
+// testing DELETE /api/connectors/:color
+

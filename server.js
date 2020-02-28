@@ -8,6 +8,7 @@ const server = express();
 const piecesRouter = require("./data/api/piecesRouter");
 
 server.use(cors());
+server.use(express.json());
 
 server.use("/api", piecesRouter);
 
